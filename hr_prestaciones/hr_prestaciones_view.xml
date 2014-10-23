@@ -39,7 +39,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem name="Tasas Interes Prestaciones BCV" parent="hr.menu_hr_root" id="menu_hr_tasas" sequence="21" />
+        <menuitem name="Prestaciones Sociales" parent="hr.menu_hr_root" id="menu_hr_tasas" sequence="21" />
         <menuitem name="Tabla Prestasiones" parent="menu_hr_tasas" id="menu_hr_tasas_01" sequence="21"  action="action_hr_tasas_tree"/>        
             
 		

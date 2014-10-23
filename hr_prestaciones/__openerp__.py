@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': 'OpenERP-Evernote',
+    'name': 'LaBici Prestaciones Sociales',
     'version': '1.0',
     'description': '''
         This module made tabla de prestaciones.
@@ -32,6 +32,7 @@
         'hr'
     ],
     'data': [
+             'hr_prestaciones_view.xml'
     ],
     'installable': True,
     'auto_install':False,
