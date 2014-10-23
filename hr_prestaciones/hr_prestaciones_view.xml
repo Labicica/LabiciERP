@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<openerp>
+	<data> 
+			
+		<!-- Prestaciones-Openepr form view -->
+		
+		  <record id="view_hr_tasas_tree" model="ir.ui.view">
+            <field name="name">hr.tasas.tree</field>
+            <field name="model">hr.tasas</field>
+            <field name="arch" type="xml">
+                <tree string="Tasas de Interes">
+                    <field name="name"/>
+                    <field name="gaceta" />
+                    <field name="fechagaceta" />
+                    <field name="tasa1" />
+                    <field name="tasa2" />
+                </tree>
+            </field>
+        </record>
+		
+		<record id="view_hr_tasas_form" model="ir.ui.view">
+            <field name="name">hr.tasas.form</field>
+            <field name="model">hr.tasas</field>
+            <field name="arch" type="xml">
+                <form string="Tasas de Interes">
+                    <field name="name"/>
+                    <field name="gaceta" />
+                    <field name="fechagaceta" />
+                    <field name="tasa1" />
+                    <field name="tasa2" />
+                </form>
+            </field>
+        </record>
+		
+		<record id="action_hr_tasas_tree" model="ir.actions.act_window">
+            <field name="name">Tasas Interes Prestaciones BCV</field>
+            <field name="res_model">hr.tasas</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Tasas Interes Prestaciones BCV" parent="hr.menu_hr_root" id="menu_hr_tasas" sequence="21" />
+        <menuitem name="Tabla Prestasiones" parent="menu_hr_tasas" id="menu_hr_tasas_01" sequence="21"  action="action_hr_tasas_tree"/>        
+            
+		
+	</data>
+</openerp>
