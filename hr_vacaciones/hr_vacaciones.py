@@ -87,19 +87,21 @@ class hr_vacaciones(osv.osv):
     
     _columns = {
         'name': fields.char('Name', size=64, required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'line_ids': fields.one2many('hr.vacaciones.lines', 'utilidades_id', 'Lineas', required=False, readonly=True, states={'draft': [('readonly', False)]}),
+        'line_ids': fields.one2many('hr.vacaciones.lines', 'vacaciones_id', 'Lineas', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         'state': fields.selection([
             ('draft', 'Draft'),
             ('close', 'Close'),
         ], 'Status', select=True, readonly=True),
         'date_start': fields.date('Date From', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'date_end': fields.date('Date To', required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'meses_estimados':fields.integer('Meses estimados'),
-        'dias_utilidades': fields.integer('Dias Utilidades'),
+        'holiday_status_id': fields.many2one("hr.holidays.status", "Leave Type", required=True,readonly=True),
+        'fecha_reintegro': fields.date('Fecha Reintegro', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'total_empleados':fields.function(_calculate_empleados, method=True, type='float', string='Empleados'),
-        'total_utilidades':fields.function(_calculate_utilidades, method=True, type='float', string='Total Utilidades'),
-        'total_ince':fields.function(_calculate_inces, method=True, type='float', string='Total I.N.C.E.S.'),
+        'total_vacaciones':fields.function(_calculate_utilidades, method=True, type='float', string='Total Vacaciones'),
         'total_islr':fields.function(_calculate_islr, method=True, type='float', string='Total I.S.L.R.'),
+        'total_faov':fields.function(_calculate_islr, method=True, type='float', string='Total FAOV'),
+        'total_sso':fields.function(_calculate_islr, method=True, type='float', string='Total S.S.O./P.I.E.'),
+        'observaciones': fields.text('Observaciones', readonly=False, states={'draft':[('readonly',False)]}),
     }
     _defaults = {
         'state': 'draft',
@@ -129,6 +131,19 @@ class hr_vacaciones_lines(osv.osv):
             res[line.id] = float(line.utilidades) - float(line.anticipos) - float(line.retencion_ince) - float(line.retencion_islr)
         return res    
 
+    def _calculate_fecha_reintegro(self, cr, uid, ids, name, args, context):
+        formato_fecha = "%d/%m/%Y"
+        fecha1 = raw_input('Introducir fecha reintegro (dd/mm/aaaa): ')  
+        fecha1 = datetime.strptime(fecha1, formato_fecha)
+        fecha2 = fecha1
+        diferencia = 22
+        while (diferencia):  
+          fecha2 = fecha2 - timedelta(1)
+          if datetime.weekday(fecha2) in [5,6]:
+            continue
+          diferencia = diferencia - 1
+        return fecha2    
+
     def _imagen_employee(self, cr, uid, ids, name, args, context):
         if not ids: return {}
         res = {}
@@ -142,23 +157,30 @@ class hr_vacaciones_lines(osv.osv):
     
     _columns = {
                 'employee_id': fields.many2one('hr.employee', 'Employee', required=True, readonly=False, states={'draft': [('readonly', False)]}),
-                'devengado_acumulado':fields.float('Devengado Acumulado'),
                 'periodos':fields.float('Meses trabajados'),
                 'tiempo_servicio':fields.float('Años de Servicio'),
-                'dias_vacaciones':fields.float('Dias de Vacaciones Colectivos'),
-                'dias_adicionales':fields.float('Dias de Vacaciones por antiguedad'),    
+                'dias_disfrute':fields.float('Dias de Disfrute Vacacional'),
+                'dias_bono':fields.float('Dias de Bono Vacacional'),
+                'dias_adicionales':fields.float('Dias de Vacaciones por antiguedad'),
+                'dias_desyfer':fields.float('Dias de Descanso y Feriados'),
+                'monto_disfrute':fields.float('Monto por dias de Disfrute Vacacional'),
+                'monto_bono':fields.float('Monto por dias de Bono Vacacional'),
+                'monto_adicionales':fields.float('Monto por Dias Vacaciones por antiguedad'),
+                'monto_desyfer':fields.float('Monto por Dias Descanso y Feriados'),                    
                 'sueldo_1':fields.float('Sueldo 1'),
                 'sueldo_2':fields.float('Sueldo 2'),
                 'sueldo_3':fields.float('Sueldo 3'),
-                'sueldo_promedio':fields.float('Sueldo Promedio'),                            
+                'sueldo_promedio':fields.float('Sueldo Promedio'),
+                'sueldo_diario':fields.float('Sueldo Diario'),
+                'dias_disfrute_pagado':fields.float('Dias de Disfrute Pagado'),
+                'monto_disfrute_pagado':fields.float('Monto de Disfrute Pagado'),
+                'dias_bono_pagado':fields.float('Dias de Bono Pagado'),
+                'monto_bono_pagado':fields.float('Monto de Bono Pagado'),                             
                 'tasa_islr':fields.float('% I.S.L.R.'),
-                'tasa_ince':fields.float('% I.N.C.E.S.'),
-                'retencion_ince':fields.float('Retencion I.N.C.E.S.'),
                 'retencion_islr':fields.float('Retencion I.S.L.R.'),
-                'anticipos':fields.float('Anticipos'),
                 'neto_cobrar':fields.function(_calculate_total, method=True, type='float', string='Neto a Cobrar'),
                 'observaciones': fields.text('Observaciones', readonly=False, states={'draft':[('readonly',False)]}),
-                'utilidades_id': fields.many2one('hr.utilidades', 'Utilidades', readonly=True, ondelete='cascade', states={'draft': [('readonly', False)]}),
+                'vacaciones_id': fields.many2one('hr.vacaciones', 'Vacaciones', readonly=True, ondelete='cascade', states={'draft': [('readonly', False)]}),
                 'state': fields.selection([
                         ('draft', 'Draft'),
                         ('close', 'Close'),
@@ -168,20 +190,27 @@ class hr_vacaciones_lines(osv.osv):
                 'employee_code': fields.char('Codigo', size=64,readonly=True),                                          
                 }   
     _defaults = {
-        'tasa_ince':0.5,
+        'dias_disfrute':0.00,
+        'dias_bono':0.00,
+        'dias_adicionales':0.00,
+        'dias_desyfer':0.00,
+        'monto_disfrute':0.00,
+        'monto_bono':0.00,
+        'monto_adicionales':0.00,
+        'monto_desyfer':0.00,                     
+        'dias_disfrute_pagado':0.00,
+        'monto_disfrute_pagado':0.00,
+        'dias_bono_pagado':0.00,
+        'monto_bono_pagado':0.00,        
         'tasa_islr':0.00,
-        'retencion_ince': 0.00,
         'retencion_islr':0.00,
-        'anticipos':0.00,  
         'neto_cobrar':0.00,
         'tiempo_servicio':0.00,
-        'dias_vacaciones':0.00,
-        'dias_adicionales':0.00,
         'sueldo_1':0.00,
         'sueldo_2':0.00,        
         'sueldo_3':0.00,
         'sueldo_promedio':0.00,
-        'devengado_acumulado':0.00, 
+        'sueldo_diario':0.00,
         'periodos':0.0,
                  } 
     
