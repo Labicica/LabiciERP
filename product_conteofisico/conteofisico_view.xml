@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- 
+        Formulario para Ubicaciones Fisicas 
+        -->                
+          
+            <record model="ir.ui.view" id="ubicacion_tree_view">
+                <field name="name">cf.ubicacion.tree</field>
+                <field name="model">cf.ubicacion</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Ubicaciones Fisicas">
+                        <field name="name"/>
+                        <field name="move_ids"/>
+	                    <field name="suma_1"/>
+	                    <field name="suma_2"/>                        
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="ubicacion_form_view">
+                <field name="name">cf.ubicacion.form</field>
+                <field name="model">cf.ubicacion</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Ubicaciones Fisiscas">
+                    	<group>
+                    		<field name="name"/>
+                    	</group>
+                    	<newline/>
+                    	<notebook>
+	                    	<page string="Ubicaciones">
+		                        <field name="move_ids" nolabel="1">
+		                        	<tree editable="bottom" string="Codigos">
+		                        		<field name="name"/>
+		                        		<field name="product_id"/>
+		                        	</tree>         
+		                        	<form string="Codigos">
+		                        	    <group> 
+			                        		<field name="name"/>
+			                        		<newline/>
+			                        		<field name="product_id"/>
+		                        	    </group>                        		
+		                        	</form>                          	              	
+		                        </field> 	                    	
+	                    	</page>
+                            <page string="Conteos">
+		                        <field name="conteos_ids" nolabel="1">
+		                        	<tree editable="bottom" string="Codigos">
+		                        		<field name="ubica_id"/>
+		                        		<field name="product_id"/>
+		                        		<field name="conteo_1"/>
+		                        		<field name="conteo_2"/>
+		                        		<field name="conteo_3"/>
+		                        	</tree>                                 	              	
+		                        </field>                             
+                            </page>
+                    	</notebook>
+                    	<newline/>
+                    	<group>
+	                    	<field name="suma_1"/>
+	                    	<field name="suma_2"/>
+                    	</group>
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_cf_ubicacion_tree_view">
+                <field name="name">Hojas de Ubicaciones</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">cf.ubicacion</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="ubicacion_tree_view"/>
+            </record>
+
+            <menuitem id="cf_ubicacion_menu" name="Hoja de Ubicaciones" parent="stock.menu_stock_inventory_control" action="action_cf_ubicacion_tree_view" sequence="5"/>
+            
+            <record model="ir.ui.view" id="conteos_tree_view">
+                <field name="name">cf.conteos.tree</field>
+                <field name="model">cf.conteos</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Conteo Fisico">
+                        <field name="name"/>
+                        <field name="fecha"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="conteos_form_view">
+                <field name="name">cf.conteos.form</field>
+                <field name="model">cf.conteos</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="form_string">
+                        <group>
+	                        <field name="name" select="1"/>
+	                        <field name="fecha"/>    
+	                        <newline/>
+	                        <button name="action_create_data" type="object"  string="Cargar Ubicaciones" icon="gtk-execute"/>                    
+                        </group>
+                        <newline/>
+                        <field name="lineas_id" nolabel="1">
+                        	<tree editable="bottom" string="Codigos">
+                        		<field name="ubica_id"/>
+                        		<field name="product_id"/>
+                        		<field name="conteo_1"/>
+                        		<field name="conteo_2"/>
+                        		<field name="conteo_3"/>
+                        		<field name="resultado"/>                        		                        		                        		
+                        	</tree>         
+                        	<form string="Codigos">
+                        	    <group colspan="2"> 
+	                        		<field name="ubica_id"/>
+	                        		<field name="product_id"/>
+	                        		<field name="conteo_1"/>
+	                        		<field name="conteo_2"/>
+	                        		<field name="conteo_3"/>
+	                        		<field name="resultado"/>  
+                        	    </group>                        		
+                        	</form>                          	              	
+                        </field>
+                        
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_cf_conteos_tree_view">
+                <field name="name">Conteo Fisico</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">cf.conteos</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="conteos_tree_view"/>
+            </record>
+            
+			<menuitem id="cf_conteos_menu" name="Conteo Fisico" parent="stock.menu_stock_inventory_control" action="action_cf_conteos_tree_view" sequence="5"/>
+
+            <record model="ir.ui.view" id="conteo_move_tree_view">
+                <field name="name">cf.conteo.move.tree</field>
+                <field name="model">cf.conteo.move</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Conteo Fisico/Ubicacion">
+                        <field name="ubica_id"/>
+                        <field name="product_id"/>
+                    </tree>
+                </field>
+            </record> 		
+	                 
+            <record model="ir.ui.view" id="ubicacion_move_tree_view">
+                <field name="name">cf.ubicacion.move.tree</field>
+                <field name="model">cf.ubicacion.move</field>
+                <field name="arch" type="xml">
+                    <tree string="Ubicaciones">
+                        <field name="name"/>
+                        <field name="product_id"/>
+                    </tree>
+                </field>
+            </record>
+		    
+    </data>
+</openerp>

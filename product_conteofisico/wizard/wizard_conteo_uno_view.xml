@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_cf_conteo_uno" model="ir.ui.view">
+            <field name="name">Cargar Conteo Nro. 1</field>
+            <field name="model">cf.conteo.uno</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Cargar Conteo Nro. 1">
+				    <group colspan="2">
+				        <field name="ubicacion"/>
+				        <field name="cantidad"/>				      			        
+				    </group>
+				    <group colspan="4" col="4">
+                        <group col="2" colspan="2"/>
+                        <button name="conteo_add" string="Conteo No. 1"
+                            colspan="1" type="object" icon="gtk-apply" />
+                        <button icon="gtk-stop" special="cancel"
+                            string="Cerrar" />
+                    </group>
+				</form>
+            </field>
+        </record>        
+        
+        <record id="action_cf_conteo_uno" model="ir.actions.act_window">
+            <field name="name">Procesar Conteo Nro. 1</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cf.conteo.uno</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>        
+
+    </data>
+</openerp>

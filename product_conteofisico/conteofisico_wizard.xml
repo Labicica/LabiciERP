@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+   	    <menuitem 
+	    	action="action_cf_conteo_uno" 
+	    	id="cf_conteo_numero1" 
+	    	parent="stock.menu_stock_inventory_control"/>           
+ 
+	    <menuitem 
+	    	action="action_cf_conteo_dos"
+	    	id="cf_conteo_numero2" 
+	    	parent="stock.menu_stock_inventory_control"/>
+	    	
+	    <menuitem 
+	    	action="action_cf_generar_txt"
+	    	id="cf_conteo_generar_txt" 
+	    	parent="stock.menu_stock_inventory_control"/> 	    	     	
+    </data>
+</openerp>
