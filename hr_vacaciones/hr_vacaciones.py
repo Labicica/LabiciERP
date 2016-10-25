@@ -87,19 +87,20 @@ class hr_vacaciones(osv.osv):
     
     _columns = {
         'name': fields.char('Name', size=64, required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'line_ids': fields.one2many('hr.vacaciones.lines', 'utilidades_id', 'Lineas', required=False, readonly=True, states={'draft': [('readonly', False)]}),
+        'line_ids': fields.one2many('hr.vacaciones.lines', 'vacaciones_id', 'Lineas', required=False, readonly=True, states={'draft': [('readonly', False)]}),
         'state': fields.selection([
             ('draft', 'Draft'),
             ('close', 'Close'),
         ], 'Status', select=True, readonly=True),
         'date_start': fields.date('Date From', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'date_end': fields.date('Date To', required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'meses_estimados':fields.integer('Meses estimados'),
-        'dias_utilidades': fields.integer('Dias Utilidades'),
+        'holiday_status_id': fields.many2one("hr.holidays.status", "Leave Type", required=True,readonly=True),
+        'date_reinstatement': fields.date('Date Reinstatement', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'total_empleados':fields.function(_calculate_empleados, method=True, type='float', string='Empleados'),
-        'total_utilidades':fields.function(_calculate_utilidades, method=True, type='float', string='Total Utilidades'),
-        'total_ince':fields.function(_calculate_inces, method=True, type='float', string='Total I.N.C.E.S.'),
+        'total_vacaciones':fields.function(_calculate_utilidades, method=True, type='float', string='Total Vacaciones'),
         'total_islr':fields.function(_calculate_islr, method=True, type='float', string='Total I.S.L.R.'),
+        'total_faov':fields.function(_calculate_islr, method=True, type='float', string='Total FAOV'),
+        'total_sso':fields.function(_calculate_islr, method=True, type='float', string='Total S.S.O./P.I.E.'),
     }
     _defaults = {
         'state': 'draft',
@@ -158,7 +159,7 @@ class hr_vacaciones_lines(osv.osv):
                 'anticipos':fields.float('Anticipos'),
                 'neto_cobrar':fields.function(_calculate_total, method=True, type='float', string='Neto a Cobrar'),
                 'observaciones': fields.text('Observaciones', readonly=False, states={'draft':[('readonly',False)]}),
-                'utilidades_id': fields.many2one('hr.utilidades', 'Utilidades', readonly=True, ondelete='cascade', states={'draft': [('readonly', False)]}),
+                'vacaciones_id': fields.many2one('hr.vacaciones', 'Vacaciones', readonly=True, ondelete='cascade', states={'draft': [('readonly', False)]}),
                 'state': fields.selection([
                         ('draft', 'Draft'),
                         ('close', 'Close'),
