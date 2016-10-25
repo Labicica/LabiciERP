@@ -30,7 +30,18 @@ class hr_employee(osv.osv):
     #Do not touch _name it must be same as _inherit
     
     _columns = {
-                'fechaingreso' : fields.date("Fecha de Ingreso")           
+                'fechaingreso' : fields.date("Fecha de Ingreso"),
+                'contratado': fields.boolean('Contradado'),
+                'sueldo': fields.float('Sueldo Mensual'),
+                'es_variable': fields.boolean('Es Sueldo Variable? '),  
+                'tasa_islr':fields.float('% I.S.L.R.'),
+                'meses_reposo':fields.integer('Meses de Reposo '),
+                'fechaegreso' : fields.date("Fecha de Egreso"),        
                  }   
+    _default = {
+                'contratado':False,
+                'es_variable':False,
+                'tasa_islr': 0.00,
+                }
     
     

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <report
+        string="Garantias de las Prestaciones Sociales"
+        model="hr.cuadropres.print"
+        auto="True"
+        name="hr.cuadropres.garantias"
+        rml="hr_prestaciones/report/hr_garantias.jrxml"
+        id="garantias"
+        menu="False"
+        header="False"
+        />
+    <report
+        string="Resumen de Devengado"
+        model="hr.resumendevengados.print"
+        auto="True"
+        name="hr.cuadropres.resumendevengado"
+        rml="hr_prestaciones/report/hr_resumendevengados.jrxml"
+        id="resumendevengado"
+        menu="False"
+        header="False"
+        />        
+</data>
+</openerp>

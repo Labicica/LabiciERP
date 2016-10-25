@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cuadro de Prestaciones" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="160"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Code-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/Code-code]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Total_Devengado_Mensual-tdmensual" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Total_Devengado_Mensual-tdmensual]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/id]]></fieldDescription>
+	</field>
+	<field name="Nombre_del_trabajo-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/Trabajo-job_id/Nombre_del_trabajo-name]]></fieldDescription>
+	</field>
+	<field name="Fecha_de_Ingreso-fechaingreso" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/Fecha_de_Ingreso-fechaingreso]]></fieldDescription>
+	</field>
+	<field name="Salario_basico_total-total_wage" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/Salario_basico_total-total_wage]]></fieldDescription>
+	</field>
+	<field name="Dias_de_Garantias-ddgarantias" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Dias_de_Garantias-ddgarantias]]></fieldDescription>
+	</field>
+	<field name="Dias_Bono_Vacaciones-dbvacaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Dias_Bono_Vacaciones-dbvacaciones]]></fieldDescription>
+	</field>
+	<field name="Deposito_de_la_Garantia_de_las_Prestaciones_Acumuladas-dgpacumuladas" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Deposito_de_la_Garantia_de_las_Prestaciones_Acumuladas-dgpacumuladas]]></fieldDescription>
+	</field>
+	<field name="Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones]]></fieldDescription>
+	</field>
+	<field name="Total_Devengado_Diario-tdd" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Total_Devengado_Diario-tdd]]></fieldDescription>
+	</field>
+	<field name="Remuneracion_Basica-rbasica" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Remuneracion_Basica-rbasica]]></fieldDescription>
+	</field>
+	<field name="Salario_Diario_integral-sdintegral" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Salario_Diario_integral-sdintegral]]></fieldDescription>
+	</field>
+	<field name="Dias_Bono_Vacaciones-dbvacaciones2" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Dias_Bono_Vacaciones-dbvacaciones]]></fieldDescription>
+	</field>
+	<field name="Dias_Adicionales_de_Garantias-dagarantias" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Dias_Adicionales_de_Garantias-dagarantias]]></fieldDescription>
+	</field>
+	<field name="Dias_Utilidades-dutilidades" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Dias_Utilidades-dutilidades]]></fieldDescription>
+	</field>
+	<field name="Otras_Asignaciones-oasignaciones" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Otras_Asignaciones-oasignaciones]]></fieldDescription>
+	</field>
+	<field name="Meses-meses" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Meses-meses]]></fieldDescription>
+	</field>
+	<field name="No_identificacion-identification_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/No_identificacion-identification_id]]></fieldDescription>
+	</field>
+	<field name="No_Pasaporte-passport_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/No_Pasaporte-passport_id]]></fieldDescription>
+	</field>
+	<field name="Alicuota_Bono_Vaciones-abvacaciones" class="java.lang.Float">
+		<fieldDescription><![CDATA[/data/record/Alicuota_Bono_Vaciones-abvacaciones]]></fieldDescription>
+	</field>
+	<field name="Alicuota_Utilidades-autilidades" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Alicuota_Utilidades-autilidades]]></fieldDescription>
+	</field>
+	<field name="Anticipos_Prestaciones_Sociales-apsociales" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Anticipos_Prestaciones_Sociales-apsociales]]></fieldDescription>
+	</field>
+	<field name="Otro_id-otherid" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleado-employee_id/Otro_id-otherid]]></fieldDescription>
+	</field>
+	<field name="End_Date-date_end" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/End_Date-date_end]]></fieldDescription>
+	</field>
+	<field name="Start_Date-date_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Start_Date-date_start]]></fieldDescription>
+	</field>
+	<variable name="Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones_1" class="java.lang.Number" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones}]]></variableExpression>
+	</variable>
+	<variable name="Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones_2" class="java.lang.Number" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones}]]></variableExpression>
+	</variable>
+	<variable name="Anticipos_Prestaciones_Sociales-apsociales_1" class="java.lang.Number" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Anticipos_Prestaciones_Sociales-apsociales}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="Dias_Adicionales_de_Garantias-dagarantias_1" class="java.lang.Integer" resetType="Group" resetGroup="empleados" calculation="Count">
+		<variableExpression><![CDATA[$F{Dias_Adicionales_de_Garantias-dagarantias}]]></variableExpression>
+	</variable>
+	<variable name="Dias_de_Garantias-ddgarantias_1" class="java.lang.Integer" resetType="Group" resetGroup="empleados" calculation="Count">
+		<variableExpression><![CDATA[$F{Dias_de_Garantias-ddgarantias}]]></variableExpression>
+	</variable>
+	<variable name="Dias_de_Garantias-ddgarantias_2" class="java.lang.Float" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Dias_de_Garantias-ddgarantias}]]></variableExpression>
+	</variable>
+	<variable name="Dias_Adicionales_de_Garantias-dagarantias_2" class="java.lang.Float" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Dias_Adicionales_de_Garantias-dagarantias}]]></variableExpression>
+	</variable>
+	<variable name="garantias-anticipos" class="java.lang.Number" resetType="Group" resetGroup="empleados">
+		<variableExpression><![CDATA[$V{Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones_2} - $V{Anticipos_Prestaciones_Sociales-apsociales_1}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="Remuneracion_Basica-rbasica_1" class="java.lang.Float" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Remuneracion_Basica-rbasica}]]></variableExpression>
+	</variable>
+	<variable name="Otras_Asignaciones-oasignaciones_1" class="java.lang.Float" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Otras_Asignaciones-oasignaciones}]]></variableExpression>
+	</variable>
+	<variable name="Total_Devengado_Mensual-tdmensual_1" class="java.lang.Float" resetType="Group" resetGroup="empleados" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total_Devengado_Mensual-tdmensual}]]></variableExpression>
+	</variable>
+	<variable name="Total_Devengado_Mensual-tdmensual_2" class="java.lang.Float" resetType="Group" resetGroup="empleados" calculation="Average">
+		<variableExpression><![CDATA[$F{Total_Devengado_Mensual-tdmensual}]]></variableExpression>
+	</variable>
+	<group name="empleados" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="100">
+				<textField>
+					<reportElement x="45" y="25" width="189" height="20"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="346" y="25" width="115" height="20"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_del_trabajo-name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="233" y="4" width="112" height="20"/>
+					<textElement markup="none">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RIF / CEDULA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="4" width="44" height="20"/>
+					<textElement markup="none">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CODIGO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="45" y="4" width="190" height="20"/>
+					<textElement markup="none">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="460" y="4" width="78" height="20"/>
+					<textElement markup="none">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FECHA DE INGRESO]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="461" y="25" width="78" height="20"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_de_Ingreso-fechaingreso}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="345" y="4" width="115" height="20"/>
+					<textElement markup="none">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CARGO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="54" width="43" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL DEVENGADO MENSUAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="54" width="25" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MESES]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="2" y="25" width="42" height="20"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{No_Pasaporte-passport_id}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="26" y="54" width="44" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REMUNERACION BASICA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="72" y="54" width="36" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[OTRAS ASIGNACIONES]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="49" width="553" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="277" y="54" width="29" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ALICUOTA UTILIDADES']]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="306" y="54" width="45" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALARIO DIARIO INTEGRAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="353" y="54" width="24" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DIAS DE GARANTIA(DP TRIM ART. 142)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="410" y="54" width="45" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEPOSITO DE LAS GARANTIAS DE LAS PREST. SOC.(ART. 143)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="460" y="55" width="45" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ANTICIPO DE LAS PRESTASIONES SOCIALES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="509" y="55" width="45" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEPOSITO DE LAS GARANTIAS DE LAS PREST. SOC. ACUMULADAS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="381" y="55" width="24" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DIAS DE GARANTIA(DP ANUAL ART. 142)]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="95" width="553" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="235" y="24" width="100" height="20"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Otro_id-otherid}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="153" y="54" width="43" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL DEVENGADO DIARIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="231" y="54" width="16" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ALICUOTA BONO VACACIONAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="198" y="54" width="33" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DIAS BONO VACACIONES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="249" y="54" width="28" height="39"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font size="4" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DIAS UTILIDADES]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="77">
+				<line>
+					<reportElement x="353" y="27" width="200" height="1"/>
+				</line>
+				<line>
+					<reportElement x="353" y="24" width="200" height="1"/>
+				</line>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement x="410" y="0" width="45" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Number"><![CDATA[$V{Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones_2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="462" y="0" width="43" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Number"><![CDATA[$V{Anticipos_Prestaciones_Sociales-apsociales_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0" isBlankWhenNull="true">
+					<reportElement x="353" y="0" width="24" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Dias_de_Garantias-ddgarantias_2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0" isBlankWhenNull="true">
+					<reportElement x="381" y="0" width="23" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Dias_Adicionales_de_Garantias-dagarantias_2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="504" y="0" width="49" height="20">
+						<printWhenExpression><![CDATA[$V{Anticipos_Prestaciones_Sociales-apsociales_1}>0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Number"><![CDATA[$V{garantias-anticipos}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="509" y="0" width="45" height="20">
+						<printWhenExpression><![CDATA[$V{Anticipos_Prestaciones_Sociales-apsociales_1}<1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Number"><![CDATA[$V{Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="26" y="0" width="44" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Remuneracion_Basica-rbasica_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="71" y="0" width="36" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Otras_Asignaciones-oasignaciones_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="110" y="0" width="42" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Total_Devengado_Mensual-tdmensual_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="108" y="28" width="44" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$V{Total_Devengado_Mensual-tdmensual_2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="19" y="28" width="82" height="20"/>
+					<textElement markup="none">
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PROMEDIO DEVENGADO MENSUAL]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="5" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="89" height="20"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABICI, C.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="20" width="89" height="10"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RIF.: J-31676447-8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="353" height="20"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE DEVENGADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="555" height="20"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="6" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="MMM-yyyy">
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{End_Date-date_end}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="7" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<elementGroup/>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="73" y="0" width="37" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Otras_Asignaciones-oasignaciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="110" y="0" width="43" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Total_Devengado_Mensual-tdmensual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="25" y="0" width="45" height="20">
+					<printWhenExpression><![CDATA[$F{Remuneracion_Basica-rbasica}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Remuneracion_Basica-rbasica}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM-yy">
+				<reportElement x="0" y="0" width="25" height="20">
+					<printWhenExpression><![CDATA[$F{Remuneracion_Basica-rbasica}>0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{Meses-meses}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="231" y="0" width="15" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Alicuota_Bono_Vaciones-abvacaciones}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="26" width="553" height="1"/>
+			</line>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="202" y="0" width="27" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Dias_Bono_Vacaciones-dbvacaciones2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="249" y="0" width="28" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Dias_Utilidades-dutilidades}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="278" y="0" width="28" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Alicuota_Utilidades-autilidades}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="306" y="0" width="45" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Salario_Diario_integral-sdintegral}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="410" y="0" width="45" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Deposito_de_las_Garantias_de_Las_Prestaciones_S.-dgprestaciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="460" y="0" width="44" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Anticipos_Prestaciones_Sociales-apsociales}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="509" y="0" width="45" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Number"><![CDATA[$F{Deposito_de_la_Garantia_de_las_Prestaciones_Acumuladas-dgpacumuladas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="381" y="0" width="23" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Dias_Adicionales_de_Garantias-dagarantias}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="153" y="0" width="42" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Total_Devengado_Diario-tdd}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="353" y="0" width="24" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{Dias_de_Garantias-ddgarantias}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="149" splitType="Stretch">
+			<ellipse>
+				<reportElement x="455" y="20" width="84" height="85"/>
+			</ellipse>
+			<staticText>
+				<reportElement x="204" y="85" width="142" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Revisado por Dpto. Contabilidad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="55" width="116" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="7" y="0" width="100" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE RECIBIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="115" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA DEL TRABAJADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="0" width="115" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HUELLA DEL TRABAJADOR]]></text>
+			</staticText>
+			<line>
+				<reportElement x="199" y="56" width="116" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

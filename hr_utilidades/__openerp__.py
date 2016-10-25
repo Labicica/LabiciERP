@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': 'LaBici Prestaciones Sociales',
+    'name': 'LaBici Calculo de Utilidades',
     'version': '1.0',
     'description': '''
         This module made tabla de prestaciones.
@@ -30,13 +30,11 @@
     'website': 'http://www.labicica.com.ve',
     'depends': [
         'hr',
+        'hr_prestaciones',
     ],
     'data':  [
-             'hr_prestaciones_view.xml',
-             'hr_cuadropres_view.xml',       
-             'hr_garantias_report.xml',    
-             'wizard/hr_cuadropres_print_view.xml',  
-             'wizard/hr_resumendevengados_print_view.xml', 
+             'wizard/hr_utilidades_by_employees.xml',              
+             'hr_utilidades_view.xml',            
     ],
              
     'installable': True,

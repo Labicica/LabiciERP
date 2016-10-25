@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<openerp>
+	<data> 
+			
+		<!-- CuadroPres-Openepr form view -->
+		
+        <record id="hr_utilidades_filter" model="ir.ui.view">
+            <field name="name">hr.utilidades.search</field>
+            <field name="model">hr.utilidades</field>
+            <field name="arch" type="xml">
+                <search string="Search Utilidades">
+                    <field name="name" string="Calculo de Utilidades"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <filter icon="terp-document-new" string="Draft" domain="[('state','=','draft')]" help="Draft Calculo de Utilidades"/>
+                    <filter name="done_filter" icon="terp-camera_test" string="Done" domain="[('state','=','close')]" help="Done Calculo de Utilidades"/>
+                </search>
+            </field>
+        </record>		
+		
+        <record id="hr_utilidades_tree" model="ir.ui.view">
+            <field name="name">hr.utilidades.tree</field>
+            <field name="model">hr.utilidades</field>
+            <field name="arch" type="xml">
+                <tree string="Calculo de Utilidades">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="dias_utilidades"/>                   
+                    <field name="state"/>
+                    <field name="total_empleados"/>
+                    <field name="total_utilidades"/>
+                    <field name="total_ince"/>
+                    <field name="total_islr"/>                    
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_utilidades_form" model="ir.ui.view">
+            <field name="name">hr.utilidades.form</field>
+            <field name="model">hr.utilidades</field>
+            <field name="arch" type="xml">
+                <form string="Calculo de Utilidades" version="7.0">
+                <header>
+                    <button name="close_utilidades" type="object" string="Close" states="draft" class="oe_highlight"/>
+                    <button name="%(action_hr_utilidades_by_employees)d" type="action" states="draft" string="Generate Utilidades" class="oe_highlight"/>
+                    <button string="Set to Draft" name="draft_utilidades" type="object" states="close" />
+                    <field name="state" widget="statusbar"/>                     
+                </header>
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <h2>
+                        From <field name="date_start"/>
+                        to <field name="date_end"/>                        
+                    </h2>
+                    <group col="4">
+                        <field name="dias_utilidades"/>
+                        <field name="meses_estimados"/>                        
+	                    <field name="total_empleados"/>
+	                    <field name="total_utilidades" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+	                    <field name="total_ince" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+	                    <field name="total_islr" widget='monetary' options="{'currency_field': 'currency_id'}"/>                         
+                    </group>
+                    <separator string="Nomina de Personal"/>
+                    <field name="line_ids"/>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_utilidades_tree" model="ir.actions.act_window">
+            <field name="name">Calculo de Utilidades</field>
+            <field name="res_model">hr.utilidades</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="hr_utilidades_tree"/>
+            <field name="search_view_id" ref="hr_utilidades_filter"/>
+        </record>
+        
+        <menuitem action="action_hr_utilidades_tree" id="menu_hr_utilidades" parent="hr_prestaciones.menu_hr_tasas"/>
+        
+        <!-- Utilidades Line -->
+        <!-- <tree string="Nomula Utilidades" editable="bottom"> -->
+
+        <record id="view_hr_utilidades_line_tree" model="ir.ui.view">
+            <field name="name">hr.utilidades.lines.tree</field>
+            <field name="model">hr.utilidades.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Nomula Utilidades"> 
+                    <field name="employee_id"/>
+                    <field name="employee_code"/>
+                    <field name="devengado_acumulado"/>
+                    <field name="sueldo_promedio"/>
+                    <field name="ultimo_sueldo"/>
+                    <field name="utilidades" sum="Total Utilidades"/>
+                    <field name="retencion_ince" sum="total I.N.C.E.S."/>
+                    <field name="retencion_islr" sum="Total I.S.L.R."/>                      
+                    <field name="anticipos" sum="Total Anticipos"/>                  
+                    <field name="neto_cobrar" sum="Tota a Cobrar"/>
+                </tree>
+            </field>
+        </record>
+        <!-- 
+        <record id="view_hr_utilidades_line_form" model="ir.ui.view">
+            <field name="name">hr.utilidades.lines.form</field>
+            <field name="model">hr.utilidades.lines</field>
+            <field name="arch" type="xml">
+                <form string="Utilidades Line">
+                <group>
+                    <group>
+                        <field name="employee_id"/>
+	                    <field name="devengado_acumulado"/>
+	                    <field name="sueldo_promedio"/>
+	                    <field name="ultimo_sueldo"/>
+                    </group>
+                    <group string="Calculations">
+	                    <field name="utilidades"/>
+	                    <field name="retencion_ince"/>
+	                    <field name="retencion_islr"/>                      
+	                    <field name="anticipos"/>                  
+	                    <field name="neto_cobrar"/>                    	
+                    </group>
+                    <field name="observaciones"/>
+                </group>
+                </form>
+            </field>
+        </record>        
+        -->
+	</data>
+</openerp>

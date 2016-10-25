@@ -12,10 +12,28 @@
 		    <field name="arch" type="xml">
 		        <field name="active" position="after">
 		            <field name="fechaingreso"/>
+		            <field name="contratado"/>
+		            <field name="sueldo"/>
+		            <field name="es_variable"/>
+		            <field name="tasa_islr"/>
+		            <field name="meses_reposo"/>  
+		            <field name="fechaegreso"/>
 		        </field>
 		    </field>
         </record>
 		           
+		<record id="view_hr_employee_add01_tree" model="ir.ui.view">
+            <field name="name">hr.employee_add01.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>            
+		    <field name="type">tree</field>
+		    <field name="arch" type="xml">
+		        <field name="name" position="after">
+		            <field name="passport_id"/>
+		            <field name="identification_id"/>
+		        </field>
+		    </field>
+        </record>
 		
 	</data>
 </openerp>

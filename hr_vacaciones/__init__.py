@@ -19,28 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import hr_vacaciones
+import wizard
 
-{
-    'name': 'LaBici Prestaciones Sociales',
-    'version': '1.0',
-    'description': '''
-        This module made tabla de prestaciones.
-    ''',
-    'author': 'Labici, C.A.',
-    'website': 'http://www.labicica.com.ve',
-    'depends': [
-        'hr',
-    ],
-    'data':  [
-             'hr_prestaciones_view.xml',
-             'hr_cuadropres_view.xml',       
-             'hr_garantias_report.xml',    
-             'wizard/hr_cuadropres_print_view.xml',  
-             'wizard/hr_resumendevengados_print_view.xml', 
-    ],
-             
-    'installable': True,
-    'auto_install':False,
-    'application':True,
-}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

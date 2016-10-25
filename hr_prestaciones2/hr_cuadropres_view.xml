@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<openerp>
+	<data> 
+			
+		<!-- CuadroPres-Openepr form view -->
+		
+		  <record id="view_hr_cuadropres_tree" model="ir.ui.view">
+            <field name="name">hr.cuadropres.tree</field>
+            <field name="model">hr.cuadropres</field>
+            <field name="arch" type="xml">
+                <tree string="Cuadro Prestaciones Sociales">
+                    <field name="name"/>
+                    <field name="meses"/>  
+                    <field name="tdmensual" sum='Total Devengado'/>       
+                    <field name="sdintegral"/>
+                    <field name="spromedio"/>
+                    <field name="dgprestaciones" sum='Total Garantias'/>
+                    <field name="apsociales" sum='Total Anticipos'/>
+                    <field name="dgpacumuladas"/>
+                    <field name="tiprestaciones"/>
+                    <field name="imdevengado" sum='Total Intereses'/>
+                    <field name="iadevengado"/>
+                </tree>
+            </field>
+        </record>
+		
+		<record id="view_hr_cuadropres_form" model="ir.ui.view">
+            <field name="name">hr.cuadropres.form</field>
+            <field name="model">hr.cuadropres</field>
+            <field name="arch" type="xml">
+                <form string="Cuadro Prestaciones Sociales" version="7.0">
+	                <header>
+	                    <button name="recalculo" string="Recalculo" type="object" class="oe_highlight"/>
+	                </header>                	
+                    <sheet>
+                        <div class="oe_title">                           	                        
+                            <label for="name" class="oe_edit_only"/>
+	                        <h1>
+	                        	<field name="foto" colspan="2" widget="image" />
+	                        </h1>                            
+	                        <h1>
+                                <field name="name" colspan="2" class="oe_inline"/>
+	                        </h1>  
+	                        <label for="meses" class="oe_edit_only"/>
+                            <field name="meses" on_change="onchange_meses(meses,name)" class="oe_inline"/>	                                                
+                        </div> 
+                        <div>
+	                        <group>         
+	                        	<group>
+	                        		<field name="rbasica"/>                        		
+			                        <field name="oasignaciones"/>
+			                    	<field name="es_acumulado"/>
+			                    	<button name="actualizar_sueldo" string="Actualizar Sueldo" type="object" help="Actualizar sueldo en la ficha del trabajador"/>			                        
+			                    </group>
+			                    <group>
+			                    	<field name="tdmensual"/>
+			                    	<field name="tdd"/>
+			                    	<field name="spromedio"/>
+			                    </group>
+			                    <group>
+			                    	<field name="dbvacaciones"/>
+			                    	<field name="dutilidades"/>
+			                    </group>
+			                    <group>
+			                    	<field name="abvacaciones"/>			                    	
+			                    	<field name="autilidades"/>
+			                        <field name="sdintegral"/>			                    	
+			                    </group>
+			                </group>
+			                <group>
+			                	<group>
+				                    <field name="ddgarantias"/>
+				                    <field name="dagarantias"/>
+				                    <field name="apsociales"/>	
+				                    <field name="iapagados"/>					                    
+				                    <field name="tiprestaciones"/>			                    			                    
+			                    </group>
+			                    <group>
+				                    <field name="dgprestaciones"/>
+				                    <field name="dgpacumuladas"/>
+				                    <field name="imdevengado"/>
+				                    <field name="iadevengado"/>
+			                    </group>
+		                    </group>
+	                    </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+		
+		<record id="action_hr_cuadropres_tree" model="ir.actions.act_window">
+            <field name="name">Cuadro de Prestaciones Sociales</field>
+            <field name="res_model">hr.cuadropres</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub-Menu para Cuadro de Prestaciones --> 
+                 
+        <menuitem name="Cuadro Prestaciones" parent="menu_hr_tasas" id="menu_hr_cuadropres_02" sequence="21"  action="action_hr_cuadropres_tree"/>        
+
+		<record id="view_session_filter" model="ir.ui.view">		
+			<field name="name">hr.cuadropres.filter</field>			
+			<field name="model">hr.cuadropres</field>			
+			<field name="arch" type="xml">				
+				<search string="Cuadro de Prestaciones">				
+					<!-- <filter icon="terp-mail-message-new" string="Non zero duration" name="nonzero" domain="[('duration','>',0)]"/>		--> 		
+					<separator/>				
+					<field name="meses"/>				
+					<field name="name"/>							 				
+					<group expand="0" string="Agrupado por …">				
+						<filter string="Empleado" icon="terp-personal" domain="[]" context="{'group_by':'name'}"/>				
+						<filter string="Periodo" icon="terp-personal" domain="[]" context="{'group_by':'meses'}"/>				
+					</group>	
+					<group expand="0" string="Filtro …">							
+						<filter string="Activo" icon="terp-personal" name="activo"  domain="[('activo','=',True)]" help="Solo trabajadores activos"/>			
+					</group>	
+					<field name="activo"/>								
+				</search>			
+			</field>	
+		</record>
+
+        <!-- Employee View -->        
+                	<!--        
+        <record id="cuadropres_hr_employee_view_form" model="ir.ui.view">
+            <field name="name">cuadropres.hr.employee.view.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//div[@name='button_box']" position="inside">
+                        <button name="%(act_hr_employee_cuadropres_list)d" string="Cuadro de Prestaciones" type="action"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+ 
+        <record id="act_hr_employee_cuadropres_list" model="ir.actions.act_window">
+            <field name="res_model">hr.cuadropres</field>
+            <field name="name">Cuadro de Prestaciones Sociales</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_employee_id': [active_id], 'default_employee_id': active_id}</field>
+        </record>        		
+                       -->       
+	</data>
+</openerp>

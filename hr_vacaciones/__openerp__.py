@@ -21,22 +21,20 @@
 ##############################################################################
 
 {
-    'name': 'LaBici Prestaciones Sociales',
+    'name': 'LaBici Calculo de Vacaciones',
     'version': '1.0',
     'description': '''
-        This module made tabla de prestaciones.
+        This module made tabla para calculo de vacaciones.
     ''',
     'author': 'Labici, C.A.',
     'website': 'http://www.labicica.com.ve',
     'depends': [
         'hr',
+        'hr_prestaciones',
     ],
     'data':  [
-             'hr_prestaciones_view.xml',
-             'hr_cuadropres_view.xml',       
-             'hr_garantias_report.xml',    
-             'wizard/hr_cuadropres_print_view.xml',  
-             'wizard/hr_resumendevengados_print_view.xml', 
+             'wizard/hr_vacaciones_by_employees.xml',              
+             'hr_vacaciones_view.xml',            
     ],
              
     'installable': True,

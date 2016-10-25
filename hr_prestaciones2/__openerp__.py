@@ -35,8 +35,8 @@
              'hr_prestaciones_view.xml',
              'hr_cuadropres_view.xml',       
              'hr_garantias_report.xml',    
-             'wizard/hr_cuadropres_print_view.xml',  
-             'wizard/hr_resumendevengados_print_view.xml', 
+             'wizard/hr_cuadropres_print_view.xml',
+             'wizard/hr_resumendevengados_print_view.xml',  
     ],
              
     'installable': True,
