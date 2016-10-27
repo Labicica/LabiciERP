@@ -132,6 +132,7 @@ class hr_vacaciones_lines(osv.osv):
         return res    
 
     def _calculate_fecha_reintegro(self, cr, uid, ids, name, args, context):
+        # Funcion para calcular la fecha de salida de vacaciones en vase a la fecha de reintegro. 15 dias de ley - dias disfrutados + dias adicionales
         formato_fecha = "%d/%m/%Y"
         fecha1 = raw_input('Introducir fecha reintegro (dd/mm/aaaa): ')  
         fecha1 = datetime.strptime(fecha1, formato_fecha)
