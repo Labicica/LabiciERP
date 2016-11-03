@@ -2,11 +2,11 @@
 <openerp>
     <data>
 
-        <record id="view_hr_utilidades_by_employees" model="ir.ui.view">
-            <field name="name">hr_utilidades_employees</field>
-            <field name="model">hr.utilidades.employees</field>
+        <record id="view_hr_vacaciones_by_employees" model="ir.ui.view">
+            <field name="name">hr_vacaciones_employees</field>
+            <field name="model">hr.vacaciones.employees</field>
             <field name="arch" type="xml">
-                <form string="Utilidades por Empleados" version="7.0">
+                <form string="Vacaciones por Empleados" version="7.0">
                     <header>
                         <button icon="gtk-execute" string="Generar" name="compute_sheet" type="object" class="oe_highlight"  />
                     </header>
@@ -22,12 +22,12 @@
             </field>
         </record>
 
-        <record id="action_hr_utilidades_by_employees" model="ir.actions.act_window">
-            <field name="name">Generar Utilidades</field>
-            <field name="res_model">hr.utilidades.employees</field>
+        <record id="action_hr_vacaciones_by_employees" model="ir.actions.act_window">
+            <field name="name">Generar Vacaciones</field>
+            <field name="res_model">hr.vacaciones.employees</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_hr_utilidades_by_employees"/>
+            <field name="view_id" ref="view_hr_vacaciones_by_employees"/>
             <field name="target">new</field>
         </record>
 

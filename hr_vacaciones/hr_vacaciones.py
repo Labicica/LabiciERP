@@ -53,18 +53,29 @@ class hr_vacaciones(osv.osv):
         if not ids: return {}
         res = {}
         for record in self.browse(cr, uid, ids, context=context):
-            cr.execute("SELECT sum(utilidades-anticipos) as utilidad_cobrada FROM hr_utilidades_lines WHERE utilidades_id=%s group by utilidades_id" % (record.id))
+            cr.execute("SELECT sum(total_vacaciones-total_anticipos) as utilidad_cobrada FROM hr_vacaciones_lines WHERE vacaciones_id=%s group by vacaciones_id" % (record.id))
             res[record.id] = float(0)
             for r in cr.fetchall():
                 if r[0]:
                     res[record.id] = float(r[0])        
-        return res    
-   
-    def _calculate_inces(self, cr, uid, ids, name, args, context):
+        return res
+    
+    def _calculate_sso(self, cr, uid, ids, name, args, context):
         if not ids: return {}
         res = {}
         for record in self.browse(cr, uid, ids, context=context):
-            cr.execute("SELECT sum(retencion_ince) as utilidad_cobrada FROM hr_utilidades_lines WHERE utilidades_id=%s group by utilidades_id" % (record.id))
+            cr.execute("SELECT sum(retencion_sso) as utilidad_cobrada FROM hr_vacaciones_lines WHERE vacaciones_id=%s group by vacaciones_id" % (record.id))
+            res[record.id] = float(0)
+            for r in cr.fetchall():
+                if r[0]:
+                    res[record.id] = float(r[0])        
+        return res        
+   
+    def _calculate_faov(self, cr, uid, ids, name, args, context):
+        if not ids: return {}
+        res = {}
+        for record in self.browse(cr, uid, ids, context=context):
+            cr.execute("SELECT sum(retencion_faov) as utilidad_cobrada FROM hr_vacaciones_lines WHERE vacaciones_id=%s group by vacaciones_id" % (record.id))
             res[record.id] = float(0)
             for r in cr.fetchall():
                 if r[0]:
@@ -94,20 +105,21 @@ class hr_vacaciones(osv.osv):
         ], 'Status', select=True, readonly=True),
         'date_start': fields.date('Date From', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'date_end': fields.date('Date To', required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'holiday_status_id': fields.many2one("hr.holidays.status", "Leave Type", required=True,readonly=True),
+        'days_holiday':fields.float('Dias de Vacaciones Colectivas'),
+        'holiday_status_id': fields.many2one("hr.holidays.status", "Leave Type", required=True),
         'fecha_reintegro': fields.date('Fecha Reintegro', required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'total_empleados':fields.function(_calculate_empleados, method=True, type='float', string='Empleados'),
         'total_vacaciones':fields.function(_calculate_utilidades, method=True, type='float', string='Total Vacaciones'),
         'total_islr':fields.function(_calculate_islr, method=True, type='float', string='Total I.S.L.R.'),
-        'total_faov':fields.function(_calculate_islr, method=True, type='float', string='Total FAOV'),
-        'total_sso':fields.function(_calculate_islr, method=True, type='float', string='Total S.S.O./P.I.E.'),
+        'total_faov':fields.function(_calculate_faov, method=True, type='float', string='Total FAOV'),
+        'total_sso':fields.function(_calculate_sso, method=True, type='float', string='Total S.S.O./P.I.E.'),
         'observaciones': fields.text('Observaciones', readonly=False, states={'draft':[('readonly',False)]}),
     }
     _defaults = {
         'state': 'draft',
         'date_start': lambda *a: time.strftime('%Y-%m-01'),
         'date_end': lambda *a: str(datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[:10],
-        'dias_utilidades': 60,
+        'days_holiday': 15,
     }
     def draft_utilidades(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
@@ -128,7 +140,21 @@ class hr_vacaciones_lines(osv.osv):
         if not ids: return {}
         res = {}
         for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = float(line.utilidades) - float(line.anticipos) - float(line.retencion_ince) - float(line.retencion_islr)
+            res[line.id] = (float(line.monto_disfrute) + float(line.monto_bono) + float(line.monto_adicionales) + float(line.monto_desyfer)) - (float(line.monto_disfrute_pagado) + float(line.monto_bono_pagado)) - float(line.retencion_faov) - float(line.retencion_islr) - float(line.retencion_sso)
+        return res
+        
+    def _calculate_vacaciones(self, cr, uid, ids, name, args, context):
+        if not ids: return {}
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = float(line.monto_disfrute) + float(line.monto_bono) + float(line.monto_adicionales) + float(line.monto_desyfer)
+        return res        
+    
+    def _calculate_anticipos(self, cr, uid, ids, name, args, context):
+        if not ids: return {}
+        res = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            res[line.id] = float(line.monto_disfrute_pagado) + float(line.monto_bono_pagado) 
         return res    
 
     def _calculate_fecha_reintegro(self, cr, uid, ids, name, args, context):
@@ -140,7 +166,7 @@ class hr_vacaciones_lines(osv.osv):
         diferencia = 22
         while (diferencia):  
           fecha2 = fecha2 - timedelta(1)
-          if datetime.weekday(fecha2) in [5,6]:
+          if datetime.weekday(fecha2) in [5,6]:    #Falta agregar dias feriados. Para el año 2016 no afecta porque 24,25,31 dic y 1 de ene son fin de semana
             continue
           diferencia = diferencia - 1
         return fecha2    
@@ -179,6 +205,10 @@ class hr_vacaciones_lines(osv.osv):
                 'monto_bono_pagado':fields.float('Monto de Bono Pagado'),                             
                 'tasa_islr':fields.float('% I.S.L.R.'),
                 'retencion_islr':fields.float('Retencion I.S.L.R.'),
+                'retencion_faov':fields.float('Retencion F.A.O.V.'),
+                'retencion_sso':fields.float('Retencion S.S.O.'),
+                'total_vacaciones':fields.float('Vacaciones'),
+                'total_anticipos':fields.float('Anticipos'),
                 'neto_cobrar':fields.function(_calculate_total, method=True, type='float', string='Neto a Cobrar'),
                 'observaciones': fields.text('Observaciones', readonly=False, states={'draft':[('readonly',False)]}),
                 'vacaciones_id': fields.many2one('hr.vacaciones', 'Vacaciones', readonly=True, ondelete='cascade', states={'draft': [('readonly', False)]}),
@@ -188,6 +218,7 @@ class hr_vacaciones_lines(osv.osv):
                     ], 'Status', select=True, readonly=True),  
                 'date_from': fields.date('Date From', required=True, readonly=True, states={'draft': [('readonly', False)]}),
                 'date_to': fields.date('Date To', required=True, readonly=True, states={'draft': [('readonly', False)]}),
+                'fecha_reintegro': fields.date('fecha de Reintegro', required=True, readonly=True, states={'draft': [('readonly', False)]}),
                 'employee_code': fields.char('Codigo', size=64,readonly=True),                                          
                 }   
     _defaults = {
@@ -205,6 +236,8 @@ class hr_vacaciones_lines(osv.osv):
         'monto_bono_pagado':0.00,        
         'tasa_islr':0.00,
         'retencion_islr':0.00,
+        'retencion_faov':0.00,
+        'retencion_sso':0.00,
         'neto_cobrar':0.00,
         'tiempo_servicio':0.00,
         'sueldo_1':0.00,
@@ -223,16 +256,29 @@ class hr_vacaciones_lines(osv.osv):
             context = {}
         #defaults
         res = {'value':{
-                        'tasa_ince':0.5,
+                        'dias_disfrute':0.00,
+                        'dias_bono':0.00,
+                        'dias_adicionales':0.00,
+                        'dias_desyfer':0.00,
+                        'monto_disfrute':0.00,
+                        'monto_bono':0.00,
+                        'monto_adicionales':0.00,
+                        'monto_desyfer':0.00,                     
+                        'dias_disfrute_pagado':0.00,
+                        'monto_disfrute_pagado':0.00,
+                        'dias_bono_pagado':0.00,
+                        'monto_bono_pagado':0.00,
                         'tasa_islr':0.00,
-                        'retencion_ince': 0.00,
                         'retencion_islr':0.00,
+                        'retencion_faov':0.00,
+                        'retencion_sso':0.00,
                         'anticipos':0.00,  
                         'neto_cobrar':0.00,
-                        'utilidades':0.00,
-                        'ultimo_sueldo':0.00,
+                        'sueldo_1':0.00,
+                        'sueldo_2':0.00,
+                        'sueldo_3':0.00,
                         'sueldo_promedio':0.00,
-                        'devengado_acumulado':0.00, 
+                        'sueldo_diario':0.00,
                         'periodos':0.0,
                         } 
             }
